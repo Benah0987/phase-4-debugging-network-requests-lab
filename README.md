@@ -63,11 +63,47 @@ developing your own process.
 - Add a new toy when the toy form is submitted
 
   - How I debugged:
+  Debugging Process:
+
+Checked the error message: Received a NameError indicating an uninitialized constant in the create action of the ToysController.
+
+Inspected the code: Reviewed the ToysController class to understand the issue and identified that the error occurred due to calling Toys.create instead of Toy.create in the create action.
+
+Identified the fix: Noted that the correct method to create a new record is Toy.create, so the code needs to be updated accordingly.
+
+Made the necessary change: Modified the line toy = Toys.create(toy_params) to toy = Toy.create(toy_params) in the create action of the ToysController.
+
+Saved the changes and restarted the application: Implemented the fix and ensured that the server was restarted to reflect the changes.
+
+Tested the fix: Tested the create action by submitting a toy form and verified that the toy was successfully created without any errors.
+
+Documented the solution: Updated the code in the README file, documenting the debugging process and the fix implemented.
 
 - Update the number of likes for a toy
 
   - How I debugged:
 
+  Identifying the Issue: Received a NoMethodError with the message "undefined method +' for nil:NilClass)" in the updateaction of theToysController. This error occurred when attempting to increment the likes` attribute of a toy.
+
+Inspecting the Code: Reviewed the update action in the ToysController and identified the line causing the error, where the likes attribute of the toy was being incremented.
+
+Understanding the Error: Noted that the error occurred because some toys had a nil value for the likes attribute, and arithmetic operations cannot be performed on nil.
+
+Handling the nil Case: Decided to handle the nil case separately by adding a conditional check to set a default value for likes when it is nil.
+
+Modifying the Code: Updated the update action to include the conditional check. If likes is nil, it is set to 1; otherwise, it is incremented by 1.
+
+Testing the Fix: Ran the application and tested the update action with various toys, both with and without existing likes, to ensure that the NoMethodError no longer occurs and the increment functionality works as expected.
+
 - Donate a toy to Goodwill (and delete it from our database)
 
   - How I debugged:
+Identifying the Issue: Received a Completed 204 No Content response after executing the destroy action in the ToysController. No specific error message was provided.
+
+Reviewing the Code: Inspected the destroy action in the ToysController to understand the implementation.
+
+Code Analysis: Verified that the code in the destroy action seems correct. It finds the toy by id, destroys it, and returns a 204 No Content response using head :no_content.
+
+Error Message Interpretation: Analyzed the Completed 204 No Content response. Although it is not an error message, it indicates that the action was executed successfully without returning any content.
+
+Confirmation of Resolution: Based on the response and the absence of a specific error message, it seems that the issue has been resolve
